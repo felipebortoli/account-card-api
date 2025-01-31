@@ -18,7 +18,7 @@ mvn clean install
 ```
 
 ```shell script
-java -jar target/quarkus-app/account-card-api-1.0.0-SNAPSHOT.jar
+java -jar target/quarkus-app/quarkus-run.jar 
 ```
 
 ```shell script
