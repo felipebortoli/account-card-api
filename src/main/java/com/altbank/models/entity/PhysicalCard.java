@@ -21,6 +21,9 @@ public class PhysicalCard {
     @Column(nullable = false, unique = true)
     private String cardNumber;
 
+    @Column(nullable = false, unique = true)
+    private String trackingId;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CardStatus status;

@@ -1,6 +1,7 @@
 package com.altbank.utils;
 
 import java.util.Random;
+import java.util.UUID;
 
 public class CardNumberUtil {
     private static final Random random = new Random();
@@ -42,5 +43,8 @@ public class CardNumberUtil {
         return 100 + random.nextInt(900);
     }
 
+    public static String generateTrackingId(){
+        return UUID.randomUUID().toString();
+    }
 
 }

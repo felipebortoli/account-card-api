@@ -4,10 +4,10 @@ import com.altbank.models.entity.*;
 import com.altbank.models.enums.CardStatus;
 import com.altbank.models.enums.DeliveryStatus;
 import com.altbank.repository.CardStatusHistoryRepository;
-import com.altbank.service.AccountService;
 import com.altbank.service.PhysicalCardService;
 import com.altbank.service.VirtualCardService;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -23,8 +23,9 @@ public class WebhookService {
         this.cardStatusHistoryRepository = cardStatusHistoryRepository;
     }
 
+    @Transactional
     public void processDelivery(DeliveryWebhookPayload payload) {
-        PhysicalCard card = physicalCardService.find("cardNumber", payload.getTrackingId());
+        PhysicalCard card = physicalCardService.find("trackingId", payload.getTrackingId());
         if(card == null) {
             throw new IllegalArgumentException("Card not found");
         }
@@ -51,6 +52,7 @@ public class WebhookService {
         return "valid-api-key-altibank".equals(apiKey);
     }
 
+    @Transactional
     public void processCvvChange(CvvChangeWebhookPayload payload) {
         VirtualCard card = virtualCardService.find("cardNumber", payload.getCardId());
         if(card == null) {

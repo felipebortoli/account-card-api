@@ -33,6 +33,7 @@ public class PhysicalCardService {
                 .cardNumber(CardNumberUtil.generateCardNumber())
                 .status(CardStatus.PENDING)
                 .expirationDate(LocalDate.now().plusYears(4))
+                .trackingId(CardNumberUtil.generateTrackingId())
                 .account(account)
                 .build();
         physicalCardRepository.persist(newCard);
@@ -65,6 +66,7 @@ public class PhysicalCardService {
                 .cardNumber(CardNumberUtil.generateCardNumber())
                 .status(CardStatus.PENDING)
                 .account(account)
+                .trackingId(CardNumberUtil.generateTrackingId())
                 .cvv(CardNumberUtil.generateRandomThreeDigitNumber())
                 .expirationDate(LocalDate.now().plusYears(4))
                 .build();
